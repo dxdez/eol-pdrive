@@ -3,9 +3,6 @@
 
 <template>
     <div>
-        Navigation
+        Search Form
     </div>
 </template>
-
-<style scoped>
-</style>
