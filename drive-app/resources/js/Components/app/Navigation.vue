@@ -3,7 +3,7 @@
 
 <template>
     <div>
-        Navigation
+        Navigation Menu
     </div>
 </template>
 
