@@ -1,6 +1,7 @@
 <script setup>
     import {Link} from '@inertiajs/vue3'
     import ApplicationLogo from "@/Components/ApplicationLogo.vue"
+    import NavLink from "@/Components/NavLink.vue"
     import CreateNewDropdown from "@/Components/app/CreateNewDropdown.vue"
 </script>
 
@@ -14,6 +15,13 @@
         </div>
         <div class="px-3">
             <CreateNewDropdown />
+
+            <div class="py-3">
+                <NavLink href="/">My Files</NavLink>
+                <NavLink href="/">Shared with Me</NavLink>
+                <NavLink href="/">Shared by Me</NavLink>
+                <NavLink href="/">Trash</NavLink>
+            </div>
         </div>
     </nav>
 </template>
