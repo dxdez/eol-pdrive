@@ -1,5 +1,7 @@
 <script setup>
+    import {Link} from '@inertiajs/vue3'
     import ApplicationLogo from "@/Components/ApplicationLogo.vue"
+    import CreateNewDropdown from "@/Components/app/CreateNewDropdown.vue"
 </script>
 
 <template>
@@ -8,6 +10,10 @@
             <Link href="/">
                 <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
             </Link>
+            CasaStorage
+        </div>
+        <div class="px-3">
+            <CreateNewDropdown />
         </div>
     </nav>
 </template>
