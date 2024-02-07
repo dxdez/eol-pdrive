@@ -25,84 +25,14 @@
         >
           <div class="px-1 py-1">
             <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <EditIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Edit
-              </button>
+            <ResponsiveNavLink :href="route('profile.edit')" :class="['text-gray-900 block px-4 py-2 text-sm']">
+                    Profile
+                </ResponsiveNavLink>
             </MenuItem>
             <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <DuplicateIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Duplicate
-              </button>
-            </MenuItem>
-          </div>
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <ArchiveIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Archive
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <MoveIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Move
-              </button>
-            </MenuItem>
-          </div>
-
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="[
-                  active ? 'bg-violet-500 text-white' : 'text-gray-900',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                ]"
-              >
-                <DeleteIcon
-                  :active="active"
-                  class="mr-2 h-5 w-5 text-violet-400"
-                  aria-hidden="true"
-                />
-                Delete
-              </button>
+                <ResponsiveNavLink :href="route('logout')" method="post" as="button" :class="['text-gray-900 block px-4 py-2 text-sm']">
+                    Logout
+                </ResponsiveNavLink>
             </MenuItem>
           </div>
         </MenuItems>
@@ -113,6 +43,7 @@
 <script setup>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue"
 </script>
 
 <style scoped>
