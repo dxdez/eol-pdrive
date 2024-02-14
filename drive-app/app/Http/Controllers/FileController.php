@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\File;
 
 class FileController extends Controller
 {
@@ -24,7 +26,7 @@ class FileController extends Controller
         $file = new File();
         $file->is_folder = 1;
         $file->name = $data['name'];
-
+        $parent->appendNode($file);
     }
 
     private function getRoot()
