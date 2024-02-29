@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilesActionRequest;
+use App\Http\Requests\StoreFileRequest;
+use App\Http\Requests\StoreFolderRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;

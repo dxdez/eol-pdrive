@@ -1,5 +1,5 @@
 <template>
-    <modal :show="modelValue" max-width="sm">
+    <modal :show="modelValue" @show="onShow" max-width="sm">
         <div class="p-6">
             <h2 class="text-lg font-medium text-gray-900">
                 Create New Folder
@@ -21,6 +21,9 @@
                 <SecondaryButton @click="closeModal">
                     Cancel
                 </SecondaryButton>
+                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" @click="createFolder" :disable="form.processing">
+                    Submit
+                </PrimaryButton>
             </div>
         </div>
     </modal>
@@ -32,11 +35,15 @@
     import TextInput from "@/Components/TextInput.vue"
     import InputError from "@/Components/InputError.vue"
     import InputLabel from "@/Components/InputLabel.vue"
+    import PrimaryButton from "@/Components/PrimaryButton.vue"
     import SecondaryButton from "@/Components/SecondaryButton.vue"
+    import {nextTick, ref} from "vue";
 
     const form = useForm({
         name: ''
     })
+
+    const folderNameInput = ref(null)
 
     const {modelValue} = defineProps({
         modelValue: Boolean
@@ -50,8 +57,19 @@
         form.reset();
     }
 
+    function onShow() {
+        nextTick(() => folderNameInput.value.focus())
+    }
+
     function createFolder() {
-        console.log("Create folder")
+	form.post(route('folder.create'), {
+	    preserveScroll: true,
+	    onSuccess: () => {
+	        closeModal()
+		form.reset();
+	    },
+	    onError: () => folderNameInput.value.focus()
+        });
     }
 </script>
 
