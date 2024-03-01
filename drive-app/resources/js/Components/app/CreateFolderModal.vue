@@ -21,7 +21,9 @@
                 <SecondaryButton @click="closeModal">
                     Cancel
                 </SecondaryButton>
-                <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" @click="createFolder" :disable="form.processing">
+                <PrimaryButton class="ml-3"
+                               :class="{ 'opacity-25': form.processing }"
+                               @click="createFolder" :disable="form.processing">
                     Submit
                 </PrimaryButton>
             </div>
@@ -30,13 +32,13 @@
 </template>
 
 <script setup>
-    import {useForm} from '@inertiajs/vue3'
-    import Modal from "@/Components/Modal.vue"
-    import TextInput from "@/Components/TextInput.vue"
-    import InputError from "@/Components/InputError.vue"
-    import InputLabel from "@/Components/InputLabel.vue"
-    import PrimaryButton from "@/Components/PrimaryButton.vue"
-    import SecondaryButton from "@/Components/SecondaryButton.vue"
+    import Modal from "@/Components/Modal.vue";
+    import TextInput from "@/Components/TextInput.vue";
+    import InputError from "@/Components/InputError.vue";
+    import InputLabel from "@/Components/InputLabel.vue";
+    import {useForm, usePage} from "@inertiajs/vue3";
+    import SecondaryButton from "@/Components/SecondaryButton.vue";
+    import PrimaryButton from "@/Components/PrimaryButton.vue";
     import {nextTick, ref} from "vue";
 
     const form = useForm({
@@ -49,7 +51,7 @@
         modelValue: Boolean
     })
 
-    const emit = defineEmits('update:modelValue')
+    const emit = defineEmits(['update:modelValue'])
 
     function closeModal() {
         emit('update:modelValue')
@@ -62,13 +64,14 @@
     }
 
     function createFolder() {
-	form.post(route('folder.create'), {
-	    preserveScroll: true,
-	    onSuccess: () => {
-	        closeModal()
-		form.reset();
-	    },
-	    onError: () => folderNameInput.value.focus()
+	    form.post(route('folder.create'), {
+            preserveScroll: true,
+            onSuccess: () => {
+                closeModal()
+                form.reset();
+            }, onError: () => {
+                folderNameInput.value.focus();
+            }
         });
     }
 </script>
