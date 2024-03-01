@@ -12,9 +12,6 @@ class ParentIdBaseRequest extends FormRequest
 {
     public ?File $parent = null;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         $this->parent = File::query()->where('id', $this->input('parent_id'))->first();
@@ -24,11 +21,6 @@ class ParentIdBaseRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
