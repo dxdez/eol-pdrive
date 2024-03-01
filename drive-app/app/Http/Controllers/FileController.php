@@ -29,6 +29,7 @@ class FileController extends Controller
         $file = new File();
         $file->is_folder = 1;
         $file->name = $data['name'];
+
         $parent->appendNode($file);
     }
 

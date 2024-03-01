@@ -64,15 +64,14 @@
     }
 
     function createFolder() {
-	    form.post(route('folder.create'), {
+        form.post(route('folder.create'), {
             preserveScroll: true,
             onSuccess: () => {
                 closeModal()
                 form.reset();
-            }, onError: () => {
-                folderNameInput.value.focus();
-            }
-        });
+            },
+            onError: () => folderNameInput.value.focus()
+        })
     }
 </script>
 
