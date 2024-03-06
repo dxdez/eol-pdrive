@@ -42,5 +42,8 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="!files.data.length" class="py-8 text-center text-sm text-gray-400">
+            There is no data in this folder
+        </div>
     </AuthenticatedLayout>
 </template>

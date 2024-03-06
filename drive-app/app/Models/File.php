@@ -42,7 +42,7 @@ class File extends Model
 
     public function isRoot()
     {
-        return $this->parent_id == null;
+        return $this->parent_id === null;
     }
 
     protected static function boot()
