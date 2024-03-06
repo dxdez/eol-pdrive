@@ -31,10 +31,10 @@
                         {{file.name}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        ---
+                        {{file.owner}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        ---
+                        {{file.updated_at}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         ---
@@ -42,5 +42,8 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="!files.data.length" class="py-8 text-center text-sm text-gray-400">
+            There is no data in this folder
+        </div>
     </AuthenticatedLayout>
 </template>
