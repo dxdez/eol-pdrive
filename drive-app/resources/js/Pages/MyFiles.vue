@@ -1,4 +1,5 @@
 <script setup>
+    import {HomeIcon} from '@heroicons/vue/20/solid'
     import {Link, router, useForm, usePage} from "@inertiajs/vue3";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
@@ -12,7 +13,6 @@
         if(!file.is_folder) {
             return;
         }
-
         router.visit(route('myFiles', {folder: file.path}))
     }
 </script>
@@ -24,6 +24,7 @@
                 <li v-for="ans of ancestors.data" :key="ans.id" class="inline-flex items-center">
                     <Link v-if="!ans.parent_id" :href="route('myFiles')"
                         class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        <HomeIcon class="w-4 h-4" />&nbsp;
                         My Files
                     </Link>
                     <div v-else class="flex items-center">
