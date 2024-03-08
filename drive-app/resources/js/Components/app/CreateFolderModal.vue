@@ -67,7 +67,7 @@
     }
 
     function createFolder() {
-        form.parent_id = page.props.folder.id;
+        form.parent_id = page.props.folder.data.id;
         form.post(route('folder.create'), {
             preserveScroll: true,
             onSuccess: () => {
