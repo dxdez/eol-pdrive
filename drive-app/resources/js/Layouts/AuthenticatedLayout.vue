@@ -2,6 +2,16 @@
     import Navigation from "@/Components/app/Navigation.vue";
     import SearchForm from "@/Components/app/SearchForm.vue";
     import UserSettingsDropdown from "@/Components/app/UserSettingsDropdown.vue";
+    import {onMounted, ref} from "vue";
+    import {emitter, FILE_UPLOAD_STARTED} from "@/event-bus.js";
+
+    function uploadFiles(files) {
+        console.log(files);
+    }
+
+    onMounted(() => {
+        emitter.on(FILE_UPLOAD_STARTED, uploadFiles)
+    })
 </script>
 
 <template>
