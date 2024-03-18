@@ -55,6 +55,12 @@ class FileController extends Controller
         $parent->appendNode($file);
     }
 
+    public function store(StoreFileRequest $request)
+    {
+        $data = $request->validated();
+        dd($data);
+    }
+
     private function getRoot()
     {
         return File::query()->whereIsRoot()->where('created_by', Auth::id())->firstOrFail();
