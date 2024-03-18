@@ -5,15 +5,25 @@
     import {onMounted, ref} from "vue";
     import {emitter, FILE_UPLOAD_STARTED} from "@/event-bus.js";
 
+    const page = usePage();
+    const fileUploadForm = useForm({
+        files: [],
+        parent_id: null
+    });
+
     const dragOver = ref(false);
 
     function uploadFiles(files) {
-        console.log(files);
+        console.log(page.props)
+        fileUploadForm.parent_id = page.props.folder.id;
+        fileUplaodForm.files = files;
+
+        fileUploadForm.post('route.store');
     }
 
     function handleDrop(ev) {
         dragOver.value = false;
-        const files = ev.dataTransfer.files
+        const files = ev.dataTransfer.files;
 
         console.log(files);
         if(!files.length) {
@@ -24,11 +34,11 @@
     }
 
     function onDragOver() {
-        dragOver.value = true
+        dragOver.value = true;
     }
 
     function onDragLeave() {
-        dragOver.value = false
+        dragOver.value = false;
     }
 
     onMounted(() => {
