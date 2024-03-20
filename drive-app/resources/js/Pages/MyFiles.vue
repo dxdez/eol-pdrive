@@ -6,7 +6,7 @@
     const {files} = defineProps({
         files: Object,
         folder: Object,
-        ancestors: Array
+        ancestors: Object
     });
 
     function openFolder(file) {
