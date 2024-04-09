@@ -1,22 +1,3 @@
-<script setup>
-    import {HomeIcon} from '@heroicons/vue/20/solid'
-    import {Link, router, useForm, usePage} from "@inertiajs/vue3";
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-
-    const {files} = defineProps({
-        files: Object,
-        folder: Object,
-        ancestors: Object
-    });
-
-    function openFolder(file) {
-        if(!file.is_folder) {
-            return;
-        }
-        router.visit(route('myFiles', {folder: file.path}))
-    }
-</script>
-
 <template>
     <AuthenticatedLayout>
         <nav class="flex items-center justify-between p-1 mb-3">
@@ -63,6 +44,7 @@
                 <tr v-for="file of files.data" :key="file.id"
                     class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 cursor-pointer" @dblclick="openFolder(file)">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <FileIcon :file="file"/>
                         {{file.name}}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -82,3 +64,24 @@
         </div>
     </AuthenticatedLayout>
 </template>
+
+<script setup>
+    import {HomeIcon} from '@heroicons/vue/20/solid'
+    import {Link, router, useForm, usePage} from "@inertiajs/vue3";
+    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import FileIcon from "@/Components/app/FileIcon.vue";
+
+    const {files} = defineProps({
+        files: Object,
+        folder: Object,
+        ancestors: Object
+    });
+
+    function openFolder(file) {
+        if(!file.is_folder) {
+            return;
+        }
+        router.visit(route('myFiles', {folder: file.path}))
+    }
+</script>
+
