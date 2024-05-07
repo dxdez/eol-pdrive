@@ -68,6 +68,7 @@
             </template>
         </main>
     </div>
+    <FormProgress :form="fileUploadForm"/>
 </template>
 
 <style scoped>
