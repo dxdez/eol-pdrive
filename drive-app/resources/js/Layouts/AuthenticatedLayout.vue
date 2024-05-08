@@ -4,7 +4,9 @@
     import UserSettingsDropdown from "@/Components/app/UserSettingsDropdown.vue";
     import {useForm, usePage} from "@inertiajs/vue3";
     import {onMounted, ref} from "vue";
-    import {emitter, FILE_UPLOAD_STARTED} from "@/event-bus.js";
+    import {emitter, FILE_UPLOAD_STARTED, showErrorDialog} from "@/event-bus.js";
+    import FormProgress from "@/Components/app/FormProgress.vue";
+    import ErrorDialog from "@/Components/ErrorDialog.vue";
 
     const page = usePage();
     const fileUploadForm = useForm({
@@ -19,7 +21,24 @@
         fileUploadForm.parent_id = page.props.folder.id;
         fileUploadForm.files = files;
         fileUploadForm.relative_paths = [...files].map(file => file.webkitRelativePath);
-        fileUploadForm.post(route('file.store'));
+        fileUploadForm.post(route('file.store'), {
+            onSuccess: () => {
+
+            },
+            onError: errors => {
+                let message = '';
+                if (Object.keys(errors).length > 0) {
+                    message = errors[Object.keys(errors)[0]]
+                } else {
+                    message = 'Error during file upload. Please try again later.'
+                }
+                showErrorDialog(message)
+            },
+            onFinish: () => {
+                fileUploadForm.clearErrors()
+                fileUploadForm.reset();
+            }
+        });
     }
 
     function handleDrop(ev) {
@@ -50,9 +69,9 @@
     <div class="h-screen bg-gray-50 flex w-full gap-4">
         <Navigation class="p-6 bg-zinc-200" />
         <main @drop.prevent="handleDrop"
-            @dragover.prevent="onDragOver"
-            @dragleave.prevent="onDragLeave"
-            class="flex flex-col flex-1 px-4 overflow-hidden p-6" :class="dragOver ? 'dropzone' : ''">
+                    @dragover.prevent="onDragOver"
+                    @dragleave.prevent="onDragLeave"
+                    class="flex flex-col flex-1 px-4 overflow-hidden p-6" :class="dragOver ? 'dropzone' : ''">
 
             <template v-if="dragOver" class="text-gray-500 text-center py-8 text-sm">
                 DROP FILES HERE TO UPLOAD
@@ -68,6 +87,7 @@
             </template>
         </main>
     </div>
+    <ErrorDialog />
     <FormProgress :form="fileUploadForm"/>
 </template>
 
