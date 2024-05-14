@@ -77,16 +77,18 @@
     import {computed, onMounted, onUpdated, ref} from "vue";
 
     const loadMoreIntersect = ref(null);
-    const allFiles = ref({
-        data: props.files.data,
-        next: props.files.links.next
-    })
 
     const props = defineProps({
         files: Object,
         folder: Object,
         ancestors: Object
     })
+
+    const allFiles = ref({
+        data: props.files.data,
+        next: props.files.links.next
+    })
+
 
     function loadMore() {
         console.log("load more");
