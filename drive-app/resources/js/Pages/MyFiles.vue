@@ -74,6 +74,7 @@
     import {httpGet} from "@/Helper/http-helper.js";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import FileIcon from "@/Components/app/FileIcon.vue";
+    import {computed, onMounted, onUpdated, ref} from "vue";
 
     const loadMoreIntersect = ref(null);
     const allFiles = ref({
@@ -121,6 +122,6 @@
         })
 
         observer.observe(loadMoreIntersect.value)
-    }
+    })
 </script>
 
