@@ -22,6 +22,9 @@
                 </div>
             </li>
         </ol>
+        <div>
+            <DeleteFilesButton :delete-all="allSelected" :delete-ids="selectedIds" />
+        </div>
     </nav>
     <div class="flex-1 overflow-auto">
         <table class="min-w-full">
@@ -84,6 +87,7 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import FileIcon from "@/Components/app/FileIcon.vue";
     import Checkbox from "@/Components/Checkbox.vue";
+    import DeleteFilesButton from "@/Components/app/DeleteFilesButton.vue";
     import {computed, onMounted, onUpdated, ref} from "vue";
 
     const loadMoreIntersect = ref(null);
@@ -103,8 +107,6 @@
 
 
     function loadMore() {
-        console.log("load more");
-        console.log(allFiles.value.next);
         if (allFiles.value.next === null) {
             return;
         }
@@ -115,6 +117,8 @@
             allFiles.value.next = res.links.next
         })
     }
+
+    const selectedIds = computed(() => Object.entries(selected.value).filter(a => a[1]).map(a => a[0]))
 
     function openFolder(file) {
         if(!file.is_folder) {
