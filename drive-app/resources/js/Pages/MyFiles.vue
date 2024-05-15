@@ -27,6 +27,9 @@
         <table class="min-w-full">
             <thead class="bg-gray-100 border-b">
                 <tr>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[30px] max-w-[30px] pr-0">
+                        <Checkbox @change="onSelectAllChange" v-model:checked="allSelected" />
+                    </th>
                     <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                         Name
                     </th>
@@ -43,7 +46,13 @@
             </thead>
             <tbody>
                 <tr v-for="file of allFiles.data" :key="file.id"
-                    class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 cursor-pointer" @dblclick="openFolder(file)">
+                    class="border-b transition duration-300 ease-in-out hover:bg-blue-100 cursor-pointer" 
+                    @click="$event => toggleFileSelect(file)"
+                    @dblclick="openFolder(file)"
+                    :class="(selected[file.id] || allSelected) ? 'bg-blue-500' : 'bg-white'">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <Checkbox @change="$event => onSelectCheckboxChange(file)" v-model="selected[file.id]" :checked="selected[file.id] || allSelected" />
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         <FileIcon :file="file"/>
                         {{file.name}}
@@ -74,6 +83,7 @@
     import {httpGet} from "@/Helper/http-helper.js";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import FileIcon from "@/Components/app/FileIcon.vue";
+    import Checkbox from "@/Components/Checkbox.vue";
     import {computed, onMounted, onUpdated, ref} from "vue";
 
     const loadMoreIntersect = ref(null);
@@ -84,6 +94,8 @@
         ancestors: Object
     })
 
+    const selected = ref({});
+    const allSelected = ref(false);
     const allFiles = ref({
         data: props.files.data,
         next: props.files.links.next
@@ -109,6 +121,32 @@
             return;
         }
         router.visit(route('myFiles', {folder: file.path}))
+    }
+
+    function onSelectAllChange() {
+        allFiles.value.data.forEach(f => {
+            selected.value[f.id] = allSelected.value
+        })
+    }
+
+    function toggleFileSelect(file) {
+        selected.value[file.id] = !selected.value[file.id]
+        onSelectCheckboxChange(file)
+    }
+
+    function onSelectCheckboxChange(file) {
+        if(!selected.value[file.id]) {
+            allSelected.value = false;
+        } else {
+            let checked = true;
+            for(let file of allFiles.value.data) {
+                if(!selected.value[file.id]) {
+                    checked = false;
+                    break;
+                }
+            }
+            allSelected.value = checked
+        }
     }
 
     onUpdated(() => {
