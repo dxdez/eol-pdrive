@@ -27,6 +27,9 @@
         <table class="min-w-full">
             <thead class="bg-gray-100 border-b">
                 <tr>
+                    <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[30px] max-w-[30px] pr-0">
+                        <Checkbox :checked="false" />
+                    </th>
                     <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                         Name
                     </th>
@@ -44,6 +47,9 @@
             <tbody>
                 <tr v-for="file of allFiles.data" :key="file.id"
                     class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 cursor-pointer" @dblclick="openFolder(file)">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <Checkbox :checked="false" />
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         <FileIcon :file="file"/>
                         {{file.name}}
@@ -74,6 +80,7 @@
     import {httpGet} from "@/Helper/http-helper.js";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import FileIcon from "@/Components/app/FileIcon.vue";
+    import Checkbox from "@/Components/Checkbox.vue";
     import {computed, onMounted, onUpdated, ref} from "vue";
 
     const loadMoreIntersect = ref(null);
