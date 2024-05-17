@@ -6,6 +6,9 @@
             <div class="mt-6 flex justify-end">
                 <SecondaryButton @click="$event => emit('cancel')">Cancel</SecondaryButton>
             </div>
+            <DangerButton class="ml-3" @click="$event => emit('confirm')">
+                Confirm
+            </DangerButton>
         </div>
     </modal>
 </template>
@@ -14,6 +17,7 @@
 
     import Modal from "@/Components/Modal.vue";
     import SecondaryButton from "@/Components/SecondaryButton.vue";
+    import DangerButton from "@/Components/DangerButton.vue";
 
     const props = defineProps({
         show: Boolean,

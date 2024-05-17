@@ -23,7 +23,7 @@
             </li>
         </ol>
         <div>
-            <DeleteFilesButton :delete-all="allSelected" :delete-ids="selectedIds" />
+            <DeleteFilesButton :delete-all="allSelected" :delete-ids="selectedIds" @delete="onDelete" />
         </div>
     </nav>
     <div class="flex-1 overflow-auto">
@@ -151,6 +151,11 @@
             }
             allSelected.value = checked
         }
+    }
+
+    function onDelete() {
+        allSelected.value = false
+        selected.value = {}
     }
 
     onUpdated(() => {
