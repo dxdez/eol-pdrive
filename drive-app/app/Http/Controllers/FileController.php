@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FilesActionRequest;
-use App\Http\Requests\DestroyFilesRequest;
 use App\Http\Requests\StoreFileRequest;
 use App\Http\Requests\StoreFolderRequest;
 use App\Http\Resources\FileResource;
@@ -114,7 +113,7 @@ class FileController extends Controller
         $parent->appendNode($model);
     }
 
-    public function destroy(DestroyFilesRequest $request)
+    public function destroy(FilesActionRequest $request)
     {
         $data = $request->validated();
         $parent = $request->parent;

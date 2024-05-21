@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\ParentIdBaseRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DestroyFilesRequest extends ParentIdBaseRequest
+class FilesActionRequest extends ParentIdBaseRequest
 {
     public function rules(): array
     {
