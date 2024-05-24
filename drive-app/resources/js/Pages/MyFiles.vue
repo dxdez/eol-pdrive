@@ -32,19 +32,19 @@
             <thead class="bg-gray-100 border-b">
             <tr>
                 <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-[30px] max-w-[30px] pr-0">
-                <Checkbox @change="onSelectAllChange" v-model:checked="allSelected" />
+                    <Checkbox @change="onSelectAllChange" v-model:checked="allSelected" />
                 </th>
                 <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Name
+                    Name
                 </th>
                 <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Owner
+                    Owner
                 </th>
                 <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Last Modified
+                    Last Modified
                 </th>
                 <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Size
+                    Size
                 </th>
             </tr>
             </thead>
@@ -55,20 +55,20 @@
                 @dblclick="openFolder(file)"
                 :class="(selected[file.id] || allSelected) ? 'bg-blue-500' : 'bg-white'">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <Checkbox @change="$event => onSelectCheckboxChange(file)" v-model="selected[file.id]" :checked="selected[file.id] || allSelected" />
+                   <Checkbox @change="$event => onSelectCheckboxChange(file)" v-model="selected[file.id]" :checked="selected[file.id] || allSelected" />
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 <FileIcon :file="file"/>
-                {{file.name}}
+                    {{file.name}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{file.owner}}
+                    {{file.owner}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{file.updated_at}}
+                    {{file.updated_at}}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {{file.size}}
+                    {{file.size}}
                 </td>
             </tr>
             </tbody>
