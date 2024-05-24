@@ -1,7 +1,7 @@
 <template>
     <PrimaryButton @click="download">
         Download
-    </button>
+    </PrimaryButton>
 </template>
 
 <script setup>
