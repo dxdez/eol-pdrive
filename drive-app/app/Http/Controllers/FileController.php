@@ -45,6 +45,18 @@ class FileController extends Controller
         return Inertia::render('MyFiles', compact('files', 'folder', 'ancestors'));
     }
 
+    public function trash(Request $request) {
+        $files = File::onlyTrashed()
+            ->where('created_by', Auth::id())
+            ->orderBy('is_folder', 'desc')
+            ->orderBy('deleted_at', 'desc')
+            ->paginate(10);
+
+        $files = FileResource::collection($files);
+
+        return Inertia::render('Trash', compact('files'));
+    }
+
     public function createFolder(StoreFolderRequest $request)
     {
         $data = $request->validated();
@@ -157,13 +169,13 @@ class FileController extends Controller
             $children = $parent->children;
 
             foreach ($children as $child) {
-                $child->delete();
+                $child->moveToTrash();
             }
         } else {
             foreach ($data['ids'] ?? [] as $id) {
                 $file = File::find($id);
                 if ($file) {
-                    $file->delete();
+                    $file->moveToTrash();
                 }
             }
         }
@@ -200,7 +212,7 @@ class FileController extends Controller
                     $url = $this->createZip($file->children);
                     $filename = $file->name . '.zip';
                 } else {
-                    $dest = 'public/' . pathinfo($file->storage_path);
+                    $dest = 'public/' . pathinfo($file->storage_path, PATHINFO_BASENAME);
                     Storage::copy($file->storage_path, $dest);
 
                     $url = assert(Storage::url($dest));

@@ -74,4 +74,12 @@ class File extends Model
         });
         */
     }
+
+    public function moveToTrash()
+    {
+        $this->deleted_at = Carbon::now();
+
+        return $this->save();
+    }
+
 }

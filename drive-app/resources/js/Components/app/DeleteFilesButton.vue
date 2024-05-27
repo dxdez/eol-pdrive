@@ -61,6 +61,7 @@
             onSuccess: () => {
                 showDeleteDialog.value = false
                 emit('delete')
+                showSuccessNotification('Selected files have been deleted')
             }
         })
     }

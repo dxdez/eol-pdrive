@@ -21,6 +21,7 @@ Route::controller(\App\Http\Controllers\FileController::class)
             ->where('folder', '(.*)')
             ->name('myFiles');
         Route::post('/folder/create', 'createFolder')->name('folder.create');
+        Route::get('/trash', 'trash')->name('trash');
         Route::post('/file', 'store')->name('file.store');
         Route::delete('/file', 'destroy')->name('file.delete');
         Route::get('/file/download', 'download')->name('file.download');
