@@ -200,7 +200,7 @@ class FileController extends Controller
                     $url = $this->createZip($file->children);
                     $filename = $file->name . '.zip';
                 } else {
-                    $dest = 'public/' . pathinfo($file->storage_path);
+                    $dest = 'public/' . pathinfo($file->storage_path, PATHINFO_BASENAME);
                     Storage::copy($file->storage_path, $dest);
 
                     $url = assert(Storage::url($dest));
