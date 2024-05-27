@@ -45,6 +45,18 @@ class FileController extends Controller
         return Inertia::render('MyFiles', compact('files', 'folder', 'ancestors'));
     }
 
+    public function trash(Request $request) {
+        $files = File::onlyTrashed()
+            ->where('created_by', Auth::id())
+            ->orderBy('is_folder', 'desc')
+            ->orderBy('deleted_at', 'desc')
+            ->paginate(10);
+
+        $files = FileResource::collection($files);
+
+        return Inertia::render('Trash', compact('files'));
+    }
+
     public function createFolder(StoreFolderRequest $request)
     {
         $data = $request->validated();

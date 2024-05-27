@@ -23,7 +23,7 @@
         fileUploadForm.relative_paths = [...files].map(file => file.webkitRelativePath);
         fileUploadForm.post(route('file.store'), {
             onSuccess: () => {
-
+                showSuccessNotification(`${files.length} files have been uploaded`)
             },
             onError: errors => {
                 let message = '';
@@ -89,6 +89,7 @@
     </div>
     <ErrorDialog />
     <FormProgress :form="fileUploadForm"/>
+    <Notification />
 </template>
 
 <style scoped>
