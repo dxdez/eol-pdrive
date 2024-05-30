@@ -2,6 +2,7 @@
     <AuthenticatedLayout>
         <nav class="flex items-center justify-end p-1 mb-3">
             <div>
+                <RestoreFilesButton :all-selected="allSelected" :selected-ids="selectedIds" />
             </div>
         </nav>
         <div class="flex-1 overflow-auto">
@@ -53,6 +54,7 @@
     import FileIcon from "@/Components/app/FileIcon.vue";
     import Checkbox from "@/Components/Checkbox.vue";
     import DeleteFilesButton from "@/Components/app/DeleteFilesButton.vue";
+    import RestoreFilesButton from "@/Components/app/RestoreFilesButton.vue";
     import DownloadFilesButton from "@/Components/app/DownloadFilesButton.vue";
     import {computed, onMounted, onUpdated, ref} from "vue";
 

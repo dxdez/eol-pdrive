@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\ParentIdBaseRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FilesActionRequest extends ParentIdBaseRequest
