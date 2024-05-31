@@ -4,7 +4,7 @@
     import UserSettingsDropdown from "@/Components/app/UserSettingsDropdown.vue";
     import {useForm, usePage} from "@inertiajs/vue3";
     import {onMounted, ref} from "vue";
-    import {emitter, FILE_UPLOAD_STARTED, showErrorDialog} from "@/event-bus.js";
+    import {emitter, FILE_UPLOAD_STARTED, showErrorDialog, showSuccessNotification} from "@/event-bus.js";
     import FormProgress from "@/Components/app/FormProgress.vue";
     import ErrorDialog from "@/Components/ErrorDialog.vue";
 
