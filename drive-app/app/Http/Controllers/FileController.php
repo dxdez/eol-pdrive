@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\File;
+use ZipArchive;
 
 class FileController extends Controller
 {
@@ -192,7 +193,7 @@ class FileController extends Controller
         $all = $data['all'] ?? false;
         $ids = $data['ids'] ?? [];
 
-        if (!$all && empty($id)) {
+        if (!$all && empty($ids)) {
             return [
                  'message' => 'Please select files to download'
             ];
@@ -202,7 +203,7 @@ class FileController extends Controller
             $url = $this->createZip($parent->children);
             $filename = $parent->name . '.zip';
         } else {
-            if (count($id) === 1) {
+            if (count($ids) === 1) {
                 $file = File::find($ids[0]);
                 if ($file->is_folder) {
                     if ($file->children->count() === 0) {
