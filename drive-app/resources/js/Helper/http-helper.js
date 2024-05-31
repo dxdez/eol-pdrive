@@ -1,4 +1,4 @@
-export function httpGet(url) {
+export function httpGet(url, params = {}) {
     return fetch(url, {
         headers: {
             'Content-Type': 'application/json',

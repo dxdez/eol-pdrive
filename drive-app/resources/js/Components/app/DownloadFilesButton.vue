@@ -29,7 +29,6 @@
         }
         
         const params = new URLSearchParams();
-
         if (page.props.folder?.id) {
             params.append('parent_id', page.props.folder?.id);
         }
@@ -41,17 +40,19 @@
                 params.append('ids[]', id)
             }
         }
+        
         let url = route('file.download');
-        httpGet(url + '?' + params.toString())
-            .then(res => {
-                console.log(res);
-                if (res.url) {
-                    return;
-                }
-                const a = document.createElement('a');
-                a.download = res.filename;
-                a.href = res.url;
-                a.click();
-           })
+        httpGet(url + '?' + p.toString())
+        .then(res => {
+            console.log(res);
+            if (!res.url) { 
+                return;
+            }
+
+            const a = document.createElement('a');
+            a.download = res.filename;
+            a.href = res.url;
+            a.click();
+        }) 
     }
 </script>
