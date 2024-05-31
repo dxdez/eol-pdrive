@@ -50,7 +50,6 @@
     }
 
     function onConfirm() {
-        form.parent_id = page.props.folder.id
         if (props.allSelected) {
             form.all = true
         } else {
