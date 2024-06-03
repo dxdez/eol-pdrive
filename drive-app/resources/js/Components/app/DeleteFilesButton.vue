@@ -38,7 +38,7 @@
     const emit = defineEmits(['delete'])
 
     function onDeleteClick() {
-        if (!props.allSelected && !props.selectedIds.length) {
+        if (!props.deleteAll && !props.deleteIds.length) {
             showErrorDialog('Please select at least one file to delete')
             return
         }
