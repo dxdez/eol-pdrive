@@ -42,7 +42,7 @@
         }
         
         let url = route('file.download');
-        httpGet(url + '?' + p.toString())
+        httpGet(url + '?' + params.toString())
         .then(res => {
             console.log(res);
             if (!res.url) { 
