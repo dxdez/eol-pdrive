@@ -16,7 +16,7 @@
                 <NavLink :href="route('myFiles')" :active="$page.url == '/my-files'">My Files</NavLink>
                 <NavLink href="/">Shared with Me</NavLink>
                 <NavLink href="/">Shared by Me</NavLink>
-                <NavLink href="route('trash')" :active="$page.url == '/trash'">Trash</NavLink>
+                <NavLink :href="route('trash')" :active="$page.url == '/trash'">Trash</NavLink>
             </div>
         </div>
     </nav>

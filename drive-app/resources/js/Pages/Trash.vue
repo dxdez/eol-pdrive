@@ -47,7 +47,6 @@
 </template>
 
 <script setup>
-    import {HomeIcon} from '@heroicons/vue/20/solid'
     import {Link, router, useForm, usePage} from "@inertiajs/vue3";
     import {httpGet} from "@/Helper/http-helper.js";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
