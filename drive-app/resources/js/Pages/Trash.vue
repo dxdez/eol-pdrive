@@ -2,7 +2,8 @@
     <AuthenticatedLayout>
         <nav class="flex items-center justify-end p-1 mb-3">
             <div>
-                <RestoreFilesButton :all-selected="allSelected" :selected-ids="selectedIds" />
+                <DeleteForeverButton :all-selected="allSelected" :selected-ids="selectedIds" @delete="resetForm" />
+                <RestoreFilesButton :all-selected="allSelected" :selected-ids="selectedIds" @restore="resetForm" />
             </div>
         </nav>
         <div class="flex-1 overflow-auto">
@@ -47,13 +48,13 @@
 </template>
 
 <script setup>
-    import {HomeIcon} from '@heroicons/vue/20/solid'
     import {Link, router, useForm, usePage} from "@inertiajs/vue3";
     import {httpGet} from "@/Helper/http-helper.js";
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import FileIcon from "@/Components/app/FileIcon.vue";
     import Checkbox from "@/Components/Checkbox.vue";
     import DeleteFilesButton from "@/Components/app/DeleteFilesButton.vue";
+    import DownloadFilesButton from "@/Components/app/DownloadFilesButton.vue";
     import RestoreFilesButton from "@/Components/app/RestoreFilesButton.vue";
     import DownloadFilesButton from "@/Components/app/DownloadFilesButton.vue";
     import {computed, onMounted, onUpdated, ref} from "vue";
@@ -114,7 +115,7 @@
         }
     }
 
-    function onDelete() {
+    function resetForm() {
         allSelected.value = false
         selected.value = {}
     }
