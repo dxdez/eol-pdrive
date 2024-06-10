@@ -55,6 +55,10 @@ class FileController extends Controller
             ->paginate(10);
 
         $files = FileResource::collection($files);
+        
+        if ($request->wantsJson()) {
+            return $files;
+        }
 
         return Inertia::render('Trash', compact('files'));
     }

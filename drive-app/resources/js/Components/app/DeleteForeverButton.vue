@@ -52,15 +52,16 @@
     function onConfirm() {
         if (props.allSelected) {
             form.all = true
+            form.ids = [];
         } else {
             form.ids = props.selectedIds
         }
 
-        form.post(route('file.delete'), {
+        form.delete(route('file.deleteForever'), {
             onSuccess: () => {
                 showConfirmationDialog.value = false
                 emit('delete')
-                showSuccessNotification('Selected files have been deleted')
+                showSuccessNotification('Selected files have been deleted forever')
             }
         })
     }
