@@ -1,4 +1,7 @@
 # Proto Drive
+
+> **Note: This project is no longer actively maintained. It has been archived for historical purposes. Feel free to explore the code, but please note that it is no longer in use or supported.**
+
 A simple google drive clone written in Laravel and Vue. This project is meant to be a prototype for a self-hostable homelab solution. 
 
 
